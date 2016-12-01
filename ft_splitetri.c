@@ -6,12 +6,11 @@
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 19:03:59 by malbanes          #+#    #+#             */
-/*   Updated: 2016/11/30 15:38:40 by malbanes         ###   ########.fr       */
+/*   Updated: 2016/12/01 13:50:57 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
 
 static int		cntTetri(char *s, char c)
 {
@@ -34,11 +33,9 @@ char		**ft_splitetri(char *s, char c)
 	int		i;
 	int		y;
 	char	**split;
-	int		end;
 
 	i = 0;
 	y = 0;
-	end = 0;
 	if (!(split = (char**)malloc(sizeof(char*) * (cntTetri(s, c)) + 1))
 		|| (!s))
 		return (NULL);

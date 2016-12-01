@@ -1,21 +1,8 @@
 
 
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "libft.h"
 
 #define BUF_SIZE 550// 21 Char * 26 Tetrimax
-
-char	**ft_splitetri(char *s, char c);
-int		cntTetri(char *s, char c);
-void	ft_putstr(char *s);
-void	ft_setalpha(char **s);
-char	**ft_setmap(size_t size);
-char	**ft_placeTetri(char **tetri, char **map);
-void	ft_putchar(char c);
 
 int		main(int ac, char **av)
 {
@@ -52,13 +39,14 @@ int		main(int ac, char **av)
 		return (1);
 	}
 	tabtetri = ft_splitetri(buf, '\n');
-//	free(buf);
+	ft_rangetetri(tabtetri);
 	ft_setalpha(tabtetri);
+	//free(buf);
 	map = ft_setmap(5);
 	map2 = (ft_placeTetri(tabtetri, map));
-	while (map[y] != 0)
+	while (tabtetri[y] != 0)
 	{
-		ft_putstr(map[y]);
+		ft_putstr(tabtetri[y]);
 		ft_putchar('\n');
 		y++;
 	}
