@@ -41,12 +41,11 @@ int		main(int ac, char **av)
 	tabtetri = ft_splitetri(buf, '\n');
 	ft_rangetetri(tabtetri);
 	ft_setalpha(tabtetri);
-	//free(buf);
 	map = ft_setmap(5);
 	map2 = (ft_placeTetri(tabtetri, map));
-	while (tabtetri[y] != 0)
+	while (map2[y] != 0)
 	{
-		ft_putstr(tabtetri[y]);
+		ft_putstr(map2[y]);
 		ft_putchar('\n');
 		y++;
 	}

@@ -6,7 +6,7 @@
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 12:15:14 by malbanes          #+#    #+#             */
-/*   Updated: 2016/11/30 17:47:46 by malbanes         ###   ########.fr       */
+/*   Updated: 2016/12/02 14:05:50 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	**ft_setmap(size_t size)
 			return (NULL);
 	while (i < size)
 		map[i++] = ft_memallocMap(size);
-	map[i] = 0;
+	map[i] = NULL;
 	return (map);
 }
 /*

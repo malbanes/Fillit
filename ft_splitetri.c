@@ -6,13 +6,13 @@
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 19:03:59 by malbanes          #+#    #+#             */
-/*   Updated: 2016/12/01 13:50:57 by malbanes         ###   ########.fr       */
+/*   Updated: 2016/12/01 16:15:31 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		cntTetri(char *s, char c)
+int		cntTetri(char *s, char c)
 {
 	int i;
 	int j;
