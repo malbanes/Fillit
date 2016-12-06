@@ -6,11 +6,14 @@
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 12:56:52 by malbanes          #+#    #+#             */
-/*   Updated: 2016/12/02 14:25:55 by malbanes         ###   ########.fr       */
+/*   Updated: 2016/12/06 18:47:36 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include <stdio.h>
+
+int		place_ok_test(char *tetri, char **map, int my, int mx);
 
 int	ft_place_OK(char *tetri, char **map, int my, int mx)
 {
@@ -24,15 +27,16 @@ int	ft_place_OK(char *tetri, char **map, int my, int mx)
 	while (tetri[i] != '\0')
 	{
 		x++;
-		if (tetri[i] == '\n')
+		if (tetri[i] == '\n' && tetri[i + 1] != '\n')
 		{
 			y++;
 			x = -1;
 		}
-		if (tetri[i] != '.' && tetri[i] != '\n')
-			if (map[my + y][mx + x] != '.' || map[my + y] == NULL)
+		if (tetri[i] != '.' && tetri[i] != '\n' && (map[my + y][mx + x] != '.' || map[my + y] == NULL))
 				return (0);
-		i++;
+		else if (tetri[i] != '.' && tetri[i] != '\n')
+			map[my + y][mx + x] = 'c';
+			i++;
 	}
 	return (1);
 }
@@ -44,18 +48,22 @@ void	ft_cpy(char *tetri, char **map, int my, int mx)
 	int y;
 
 	i = 0;
-	x = -1;
 	y = 0;
+	x = 0;
 	while (tetri[i] != '\0')
 	{
-		x++;
-		if (tetri[i] == '\n')
+		if(tetri[i] >= 'A' && tetri[i] <= 'Z')
 		{
-			y++;
-			x = - 1;
-		}
-		if (tetri[i] != '.' && tetri[i] != '\n' && map[my + y] != NULL)
 			map[my + y][mx + x] = tetri[i];
+			x++;
+		}
+		else if (tetri[i] == '\n' && tetri[i + 1] != '\n')
+		{
+		y++;
+		x = 0;
+		}
+		else
+			x++;
 		i++;
 	}
 }
@@ -71,21 +79,26 @@ char	**ft_placeTetri(char **tetri, char **map)
 	t = 0;
 	my = 0;
 	mx = 0;
-	while (tetri[t] && map[my][mx])
+	while (tetri[t])
 	{
 //		printf("%d\n", ft_place_OK(tetri[t], map, my, mx));
-		if (ft_place_OK(tetri[t], map, my, mx) == 1)
+		ft_putnbr(place_ok_test(tetri[t], map, my, mx));
+		printf("\n");
+		if (my == 5)
+			exit(0);
+			//myrealloc(map[my + 1][mx + 1]);
+		if (place_ok_test(tetri[t], map, my, mx) == 1)
 		{
 			ft_cpy(tetri[t], map, my, mx);
 			t++;
 			my = 0;
 			mx = 0;
-/*			test = 0;
+			test = 0;
 			while (map[test] != 0)
 			{
 				printf("%s\n", map[test]);
 				test++;
-			}*/
+			}
 		}
 		else
 		{
@@ -95,7 +108,7 @@ char	**ft_placeTetri(char **tetri, char **map)
 				my++;
 				mx = 0;
 			}
-			if (map[my] == NULL)
+			if (mx == 5)
 			{
 				printf("pas de place");
 				return (NULL);
