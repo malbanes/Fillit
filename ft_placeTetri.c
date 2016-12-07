@@ -6,39 +6,51 @@
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 12:56:52 by malbanes          #+#    #+#             */
-/*   Updated: 2016/12/07 15:25:14 by malbanes         ###   ########.fr       */
+/*   Updated: 2016/12/07 17:35:21 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-int		place_ok_test(char *tetri, char **map, int my, int mx);
+typedef struct		int_list
+{
+	int		i;
+	int		x;
+	int		y;
+}					int_list;
+
+void	*set_int(int_list *t);
 
 int	ft_place_OK(char *tetri, char **map, int my, int mx)
 {
-	int i;
-	int x;
-	int y;
+	int_list	*t;
+	int res;
 
-	i = 0;
-	x = -1;
-	y = 0;
-	while (tetri[i] != '\0')
+	res = 0;
+	t = set_int(t);
+	while (tetri[t->i] != '\0')
 	{
-		x++;
-		if (tetri[i] == '\n' && tetri[i + 1] != '\n')
-		{
-			y++;
-			x = -1;
-		}
-		if (tetri[i] != '.' && tetri[i] != '\n' && (map[my + y][mx + x] != '.' || map[my + y] == NULL))
+		if (tetri[t->i] >= 'A' && tetri[t->i] <= 'Z')
+			if ((my + t->y) >= ft_strlen(map[0]))
 				return (0);
-		else if (tetri[i] != '.' && tetri[i] != '\n')
-			map[my + y][mx + x] = 'c';
-			i++;
+		if (tetri[t->i] >= 'A' && tetri[t->i] <= 'Z')
+		{
+			if (map[my + t->y][mx + t->x] == '.')
+				res++;
+			t->x++;
+		}
+		else if (tetri[t->i] == '\n' && tetri[t->i + 1] != '\n')
+		{
+			t->y++;
+			t->x = 0;
+		}
+		else
+			t->x++;
+		t->i++;
 	}
-	return (1);
+	free (t);
+	return (res);
 }
 
 void	ft_cpy(char *tetri, char **map, int my, int mx)
@@ -70,7 +82,6 @@ void	ft_cpy(char *tetri, char **map, int my, int mx)
 
 char	**ft_placeTetri(char **tetri, char **map)
 {
-	int	t;
 	int	my;
 	int	mx;
 	int test;
@@ -90,7 +101,7 @@ char	**ft_placeTetri(char **tetri, char **map)
 			//myrealloc(map[my + 1][mx + 1]);
 			exit(0);
 		}
-		if (place_ok_test(tetri[t], map, my, mx) == 1)
+		if (ft_place_OK(tetri[t], map, my, mx) == 4)
 		{
 			ft_cpy(tetri[t], map, my, mx);
 			t++;
