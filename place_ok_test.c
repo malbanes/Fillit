@@ -6,7 +6,7 @@
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 11:43:46 by malbanes          #+#    #+#             */
-/*   Updated: 2016/12/06 18:22:20 by malbanes         ###   ########.fr       */
+/*   Updated: 2016/12/07 15:11:05 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		place_ok_test(char *tetri, char **map, int my, int mx)
 	while (tetri[i] != '\0')
 	{
 		if (tetri[i] >= 'A' && tetri[i] <= 'Z')
-			if ((my + y) >= 5)//5 = taille de la map
+			if ((my + y) >= ft_strlen(map[0]))//5 = taille de la map
 				return (0);
 		if(tetri[i] >= 'A' && tetri[i] <= 'Z')
 		{

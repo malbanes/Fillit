@@ -6,7 +6,7 @@
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 12:15:14 by malbanes          #+#    #+#             */
-/*   Updated: 2016/12/06 11:34:18 by malbanes         ###   ########.fr       */
+/*   Updated: 2016/12/02 14:05:50 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ char	**ft_setmap(size_t size)
 	map[i] = NULL;
 	return (map);
 }
-
-/*int		main(int ac, char **av)
+/*
+int		main(int ac, char **av)
 {
 	int	i;
 	char	**map;

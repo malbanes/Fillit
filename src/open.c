@@ -4,8 +4,6 @@
 
 #define BUF_SIZE 550// 21 Char * 26 Tetrimax
 
-int		ft_sqrtSup(int nb);
-
 int		main(int ac, char **av)
 {
 	int fd;
@@ -15,7 +13,6 @@ int		main(int ac, char **av)
 	int		y;
 	char	**map;
 	char	**map2;
-	int		nbtetri;
 
 	if (ac > 2)
 	{
@@ -41,12 +38,10 @@ int		main(int ac, char **av)
 		ft_putstr("read FAILED");
 		return (1);
 	}
-	nbtetri = cntTetri(buf, '\n');
-	nbtetri = ft_sqrtSup(nbtetri * 4);
 	tabtetri = ft_splitetri(buf, '\n');
 	ft_rangetetri(tabtetri);
 	ft_setalpha(tabtetri);
-	map = ft_setmap(nbtetri);
+	map = ft_setmap(5);
 	map2 = (ft_placeTetri(tabtetri, map));
 	while (map2[y] != 0)
 	{
