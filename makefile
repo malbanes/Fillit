@@ -1,63 +1,37 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    MakefileModulaire                                  :+:      :+:    :+:    #
+#    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: malbanes <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/12/02 14:32:16 by malbanes          #+#    #+#              #
-#    Updated: 2016/12/02 16:58:49 by malbanes         ###   ########.fr        #
+#    Created: 2016/11/20 18:02:04 by malbanes          #+#    #+#              #
+#    Updated: 2016/12/08 13:42:32 by malbanes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC_PATH = src
-
-SRC_NAME =	ft_rangetetri.c\
-			ft_setmap.c\
-			ft_splitetri.c\
-			ft_placetetri.c\
-			ft_removetetri.c\
-			ft_setalpha.c\
-			open.c
-
-OBJ_PATH = obj
-
-CPPFLAGS = -Iinclude
-
-LDFLAGS = -Llibft
-
-LDLIBS = -lft
-
-LIB = libft.h
-
 NAME = Fillit
 
-CC = gcc
+SRC =	ft_removetetri.c ft_sqrtSup.c ft_setalpha.c struct_test.c\
+		ft_placetetri.c ft_setmap.c open.c ft_rangetetri.c\
+		ft_splitetri.c
 
-CFLAGS = -Werror -Wall -Wextra
+OBJ = $(SRC:.c=.o)
 
-OBJ_NAME = $(SRC_NAME:.c=.o)
+FLAGS = -Wall -Wextra -Werror
 
-SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
+all : $(NAME)
 
-OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_NAME))
+$(NAME) : $(OBJ)
+	gcc $(FLAGS) -o $(NAME) $(OBJ) libft.a
 
-all: $(NAME)
+$(OBJ) : $(SRC)
+	gcc -c $(FLAGS) $(SRC)
 
-$(NAME): $(OBJ)
-	$(CC) $(OBJ) -o Fillit
+clean :
+	/bin/rm -f $(OBJ)
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@mkdir $(OBJ_PATH) 2> /dev/null || true
+fclean : clean
+	/bin/rm -f $(NAME)
 
-$(OBJ):
-	$(CC) $(CFLAGS) $(SRC) -c 
-
-clean:
-	rm -fv $(OBJ)
-	@rmdir $(OBJ_PATH) 2> /dev/null || true
-
-fclean: clean
-	rm -fv $(NAME)
-
-re: fclean all
+re : fclean all

@@ -6,7 +6,7 @@
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/20 20:48:16 by malbanes          #+#    #+#             */
-/*   Updated: 2016/12/04 16:14:01 by malbanes         ###   ########.fr       */
+/*   Updated: 2016/12/08 13:33:20 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-void	ft_rangetetri(char **tetri);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
 char				*ft_strnstr(const char *big, const char *little, size_t\
 		len);
@@ -97,12 +96,5 @@ t_list				*ft_lstnptr(t_list *lsr, int len);
 void				ft_lstprint(t_list *lst);
 void				ft_lstswap(t_list *lst, int m1, int m2);
 void				*ft_memallocMap(size_t size);
-char				**ft_setmap(size_t size);
-int					ft_place_OK(char *tetri, char **map, int my, int mx);
-void				ft_cpy(char *tetri, char **map, int my, int mx);
-char				**ft_placeTetri(char **tetri, char **map);
-int					cntTetri(char *s, char c);
-char				**ft_splitetri(char *s, char c);
-void				ft_setalpha(char **s);
 
 #endif

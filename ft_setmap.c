@@ -6,11 +6,12 @@
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 12:15:14 by malbanes          #+#    #+#             */
-/*   Updated: 2016/12/06 11:34:18 by malbanes         ###   ########.fr       */
+/*   Updated: 2016/12/08 14:11:30 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "fillit.h"
 
 void	*ft_memallocMap(size_t size)
 {

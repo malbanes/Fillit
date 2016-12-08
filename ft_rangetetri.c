@@ -6,11 +6,12 @@
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 10:53:53 by malbanes          #+#    #+#             */
-/*   Updated: 2016/12/06 11:31:47 by malbanes         ###   ########.fr       */
+/*   Updated: 2016/12/08 13:39:21 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "fillit.h"
 
 int		ft_xblanc(char *s)
 {
@@ -48,7 +49,6 @@ int		ft_yblanc(char *s)
 void	ft_swaptetri(char *tetri, int v)
 {
 	int i;
-	char temp;
 
 	i = 0;
 	while (tetri[i])

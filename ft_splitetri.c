@@ -6,11 +6,12 @@
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 19:03:59 by malbanes          #+#    #+#             */
-/*   Updated: 2016/12/07 15:19:48 by malbanes         ###   ########.fr       */
+/*   Updated: 2016/12/08 13:38:34 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "fillit.h"
 
 int		cntTetri(char *s, char c)
 {
