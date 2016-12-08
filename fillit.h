@@ -6,7 +6,7 @@
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 12:38:41 by malbanes          #+#    #+#             */
-/*   Updated: 2016/12/08 14:58:54 by malbanes         ###   ########.fr       */
+/*   Updated: 2016/12/08 18:59:41 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ int		ft_yblanc(char *s);
 void	ft_swaptetri(char *tetri, int v);
 void	ft_rangetetri(char **tetri);
 int		ft_sqrtSup(int nb);
-int		ft_deplacetetri(char **map, char t);
+int		ft_deplacetetri(char **map, int tetri);
 int		ft_removetetri(char **map, int tetri);
 #endif

@@ -6,20 +6,22 @@
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 14:19:05 by malbanes          #+#    #+#             */
-/*   Updated: 2016/12/08 14:48:38 by malbanes         ###   ########.fr       */
+/*   Updated: 2016/12/08 18:59:44 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include "libft.h"
 
-int		ft_deplacetetri(char **map, char t)
+int		ft_deplacetetri(char **map, int tetri)
 {
+	char	t;
 	int x;
 	int y;
 
 	x = ft_strlen(map[0]) - 1;
 	y = x;
+	t = 65 + tetri;
 	while (y >= 0)
 	{
 		while (x >= 0)
@@ -51,8 +53,8 @@ int		ft_removetetri(char **map, int tetri)
 	x = 0;
 	y = 0;
 	t = 65 + tetri;
-	if (ft_deplacetetri(map, t) == 0)
-	{
+//	if (ft_deplacetetri(map, t) == 0)
+//	{
 		while (map[y] != NULL)
 		{
 			while (map[y][x] != '\0')
@@ -65,12 +67,12 @@ int		ft_removetetri(char **map, int tetri)
 			y++;
 		}
 		return (0);
-	}
-	else
-		return (1);
+//	}
+//	else
+//		return (1);
 }
-
-/*int		main()
+/*
+int		main()
 {
 	int i;
 	char	t1[21] = "AA..\nAA..\n....\n....\n\n";
@@ -81,12 +83,14 @@ int		ft_removetetri(char **map, int tetri)
 	map = ft_setmap(5);
 	ft_cpy(t1, map, 0, 0);
 	ft_cpy(t2, map, 0, 2);
-	ft_putnbr(ft_removetetri(map, 1));
-	ft_putnbr(ft_removetetri(map, 0));
-	while (map[i] != 0)
+	if (ft_removetetri(map, 1) == 1)
+//	ft_putnbr(ft_removetetri(map, 0));
 	{
-		printf("%s\n", map[i]);
-		i++;
-	}
+		while (map[i] != 0)
+		{
+			printf("%s\n", map[i]);
+			i++;
+		}
+}
 	return (0);
 }*/

@@ -6,7 +6,7 @@
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 12:56:52 by malbanes          #+#    #+#             */
-/*   Updated: 2016/12/08 15:04:47 by malbanes         ###   ########.fr       */
+/*   Updated: 2016/12/08 19:05:41 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,39 +82,37 @@ char	**ft_placeTetri(char **tetri, char **map, int t)
 
 	my = 0;
 	mx = 0;
-	while (tetri[t])
+	size = ft_strlen(map[0]);
+	if (ft_place_OK(tetri[t], map, my, mx) == 4)
 	{
-		size = ft_strlen(map[0]);
-		if (my == size)
+		ft_cpy(tetri[t], map, my, mx);
+		return (ft_placeTetri(tetri, map, t++));
+	}
+	else
+	{
+		if (ft_placeTetri(tetri, map, t++) == NULL)
 		{
-			ft_putstr("Pas de place");
-//			ft_strdel(map);
-//			ft_setmap(size + 1);
-			if (ft_removetetri(map, t - 1) == 1)
-				ft_placeTetri(tetri, map, t);
+			if (ft_deplacetetri(map, t) == 1)
+				return (ft_placeTetri(tetri, map, t++));
 			else
 			{
-				ft_removetetri(map, t - 2);
-				ft_placeTetri(tetri, map, t);
+				ft_removetetri(map, t);
+				ft_deplacetetri(map, t - 1);
+				return (ft_placeTetri(tetri, map, t));
 			}
-			exit(0);
 		}
-		if (ft_place_OK(tetri[t], map, my, mx) == 4)
+		mx++;
+		if (map[my][mx] == '\0')
 		{
-			ft_cpy(tetri[t], map, my, mx);
-			t++;
-			my = 0;
+			my++;
 			mx = 0;
 		}
-		else
+		if (my == size)
 		{
-			mx++;
-			if (map[my][mx] == '\0')
-			{
-				my++;
-				mx = 0;
-			}
+			return (NULL);
 		}
+		if (t > size)
+			return (map);
 	}
 	return (map);
 }
