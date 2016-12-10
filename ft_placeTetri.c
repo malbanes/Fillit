@@ -6,14 +6,12 @@
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 12:56:52 by malbanes          #+#    #+#             */
-/*   Updated: 2016/12/08 19:05:41 by malbanes         ###   ########.fr       */
+/*   Updated: 2016/12/09 15:24:39 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fillit.h"
-
-void	*set_int(int_list *t);
 
 int	ft_place_OK(char *tetri, char **map, int my, int mx)
 {
@@ -74,7 +72,7 @@ void	ft_cpy(char *tetri, char **map, int my, int mx)
 	}
 }
 
-char	**ft_placeTetri(char **tetri, char **map, int t)
+/*char	**ft_placeTetri(char **tetri, char **map, int t)
 {
 	int	my;
 	int	mx;
@@ -115,4 +113,4 @@ char	**ft_placeTetri(char **tetri, char **map, int t)
 			return (map);
 	}
 	return (map);
-}
+} */

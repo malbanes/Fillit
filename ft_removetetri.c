@@ -6,7 +6,7 @@
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 14:19:05 by malbanes          #+#    #+#             */
-/*   Updated: 2016/12/08 18:59:44 by malbanes         ###   ########.fr       */
+/*   Updated: 2016/12/09 14:57:18 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		ft_deplacetetri(char **map, int tetri)
 	return (1);
 }
 
-int		ft_removetetri(char **map, int tetri)
+void	ft_removetetri(char **map, int tetri)
 {
 	char	t;
 	int	x;
@@ -55,18 +55,18 @@ int		ft_removetetri(char **map, int tetri)
 	t = 65 + tetri;
 //	if (ft_deplacetetri(map, t) == 0)
 //	{
-		while (map[y] != NULL)
+	while (map[y] != NULL)
+	{
+		while (map[y][x] != '\0')
 		{
-			while (map[y][x] != '\0')
-			{
-				if (map[y][x] == t)
-					map[y][x] = '.';
-				x++;
-			}
-			x = 0;
-			y++;
+			if (map[y][x] == t)
+				map[y][x] = '.';
+			x++;
 		}
-		return (0);
+		x = 0;
+		y++;
+	}
+
 //	}
 //	else
 //		return (1);

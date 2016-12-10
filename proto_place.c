@@ -6,7 +6,7 @@
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/09 13:03:54 by malbanes          #+#    #+#             */
-/*   Updated: 2016/12/10 14:45:25 by malbanes         ###   ########.fr       */
+/*   Updated: 2016/12/10 17:40:08 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ int		proto_place(char **tetri, char **map, int t, int my, int mx)
 	//int my;
 	//int mx;
 	int size;
-	int tmp;
+//	int tmp;
 
-	tmp = 0;
-	ft_putstr("apl fct\n");
+//	tmp = 0;
+//	ft_putstr("apl fct\n");
 	size = ft_strlen(map[0]);
 	if (tetri[t] == NULL)
 		return (1);
@@ -29,76 +29,48 @@ int		proto_place(char **tetri, char **map, int t, int my, int mx)
 	if (ft_place_OK(tetri[t], map, my, mx) == 4 && my < size)
 	{
 		ft_cpy(tetri[t], map, my, mx);
-		tmp = 0;
-		while (map[tmp])
-		{
-			ft_putendl(map[tmp]);
-			tmp++;
-		}
-		ft_putstr("cpy ok\n");
-		ft_putnbr(mx);
-		ft_putchar('\n');
-			ft_putnbr(my);
-		ft_putchar('\n');
-		//exit(0);
+//		tmp = 0;
+//		while (map[tmp])
+//		{
+//			ft_putendl(map[tmp]);
+//			tmp++;
+//		}
+//		ft_putstr("cpy ok\n");
 		//return (1);
-		return((proto_place(tetri, map, t + 1, my, mx)));
+		return((proto_place(tetri, map, t + 1, 0, 0)));
 	}
 	else if (ft_place_OK(tetri[t], map, my, mx) != 4 && my == size)
-	//else if (proto_place(tetri, map, t, my, mx) == 0)
 	{
-		ft_putstr("fail tetri+1\n");
-		if (ft_deplacetetri(map, t) == 0)
+//		ft_putstr("fail tetri+1\n");
+		while (ft_deplacetetri(map, t - 1) == 0)
 		{
-			ft_removetetri(map, t);
-			ft_putstr("remove ok\n");
-			return (proto_place(tetri, map, t, my, mx + 1));
+			ft_removetetri(map, t - 1);
+			t--;
+//			ft_putstr("remove ok\n");
 		}
-		else
-		{
-			ft_putendl("deplace ok");
-			ft_deplacetetri(map, t);
-			return (ft_deplacetetri(map, t++));
-			//return (proto_place(tetri, map, t  1, my, mx + 1));
-		}
+//		ft_putendl("deplace ok");
+		ft_deplacetetri(map, t - 1);
+		//return (ft_deplacetetri(map, t++));
+		return (proto_place(tetri, map, t, 0, 0));
 	}
 	else
 	{
-		ft_putnbr(mx);
-		ft_putchar('\n');
-			ft_putnbr(my);
-		ft_putchar('\n');
-		ft_putendl("else");
-		//mx++;
+		mx++;
 		if (map[my][mx] == '\0')
 		{
-			my += 1;
-			mx = -1;
-			ft_putendl("bsh");
-			if (ft_deplacetetri(map, t--) == 1)
-			{
-					ft_removetetri(map, t);
-					ft_putendl("bsh2");
-				my += 1;
-				mx = -1;
-			}
-			//my += 1;
-			//mx = -1;
-			ft_putnbr(mx);
-		ft_putchar('\n');
-			ft_putnbr(my);
-			ft_putchar('\n');
+			my++;
+			mx = 0;
 		}
 		if (my == size + 1)
 			my--;
-		if (map[my] == NULL)
+			ft_putnbr(my);
+			ft_putchar('\n');
+		/*if (map[my] == NULL)
 		{
 			ft_putendl("null");
-			//my--;
-			//exit(0);
 			return (0);
-		}
-		return (proto_place(tetri, map, t, my, mx + 1));
+		}*/
+		return (proto_place(tetri, map, t, my, mx));
 	}
 	return (0);
 }

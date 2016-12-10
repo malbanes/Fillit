@@ -3,6 +3,8 @@
 #include "fillit.h"
 #include "libft.h"
 
+int		proto_place(char **tetri, char **map, int t, int my, int mx);
+
 #define BUF_SIZE 550// 21 Char * 26 Tetrimax
 
 int		main(int ac, char **av)
@@ -13,7 +15,7 @@ int		main(int ac, char **av)
 	char	**tabtetri;
 	int		y;
 	char	**map;
-	char	**map2;
+//	char	**map2;
 	int		nbtetri;
 
 	if (ac > 2)
@@ -46,10 +48,15 @@ int		main(int ac, char **av)
 	ft_rangetetri(tabtetri);
 	ft_setalpha(tabtetri);
 	map = ft_setmap(nbtetri);
-	map2 = (ft_placeTetri(tabtetri, map, 0));
-	while (map2[y] != 0)
+	while (proto_place(tabtetri, map, 0, 0, 0) != 1)
 	{
-		ft_putstr(map2[y]);
+		free (map);
+		nbtetri++;
+		map = ft_setmap(nbtetri);
+	}
+	while (map[y] != 0)
+	{
+		ft_putstr(map[y]);
 		ft_putchar('\n');
 		y++;
 	}
