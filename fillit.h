@@ -6,7 +6,7 @@
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 12:38:41 by malbanes          #+#    #+#             */
-/*   Updated: 2016/12/09 15:28:27 by malbanes         ###   ########.fr       */
+/*   Updated: 2016/12/12 15:48:13 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ typedef struct		int_list
 	int		y;
 }					int_list;
 
+
+int		ft_deplacetetri_ok_y(char **map, int tetri);
+int		ft_deplacetetri_ok_x(char **map, int tetri);
+int		ft_deplacetetri_y(char **map, int tetri);
 void	*set_int(int_list *t);
 int		ft_place_OK(char *tetri, char **map, int my, int mx);
 void	ft_cpy(char *tetri, char **map, int my, int mx);
@@ -41,4 +45,7 @@ void	ft_rangetetri(char **tetri);
 int		ft_sqrtSup(int nb);
 int		ft_deplacetetri(char **map, int tetri);
 void	ft_removetetri(char **map, int tetri);
+int		check_line(char *s);
+int		ft_tetri_linker(char *s);
+int		ft_tetri_isvalid(char *s);
 #endif

@@ -15,9 +15,10 @@ int		main(int ac, char **av)
 	char	**tabtetri;
 	int		y;
 	char	**map;
-//	char	**map2;
+	int	tmp;
 	int		nbtetri;
 
+	tmp = 0;
 	if (ac > 2)
 	{
 		ft_putstr("<ERROR> Too many arguments");
@@ -45,6 +46,16 @@ int		main(int ac, char **av)
 	nbtetri = cntTetri(buf, '\n');
 	nbtetri = ft_sqrtSup(nbtetri * 4);
 	tabtetri = ft_splitetri(buf, '\n');
+	//Check tetri valides
+	//while (tabtetri[tmp] != 0)
+	//{
+	//	if (ft_tetri_isvalid(tabtetri[tmp]) == 0)
+	//	{
+	//		ft_putendl("error");
+	//		return (0);
+	//	}
+	//	tmp++;
+	//}
 	ft_rangetetri(tabtetri);
 	ft_setalpha(tabtetri);
 	map = ft_setmap(nbtetri);
