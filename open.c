@@ -59,7 +59,7 @@ int		main(int ac, char **av)
 	ft_rangetetri(tabtetri);
 	ft_setalpha(tabtetri);
 	map = ft_setmap(nbtetri);
-	while (proto_place(tabtetri, map, 0, 0, 0, 0) != 1)
+		while (proto_place(tabtetri, map, 0, 0, 0, 0) != 1)
 	{
 		free (map);
 		nbtetri++;

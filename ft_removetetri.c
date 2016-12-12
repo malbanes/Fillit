@@ -6,7 +6,7 @@
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 14:19:05 by malbanes          #+#    #+#             */
-/*   Updated: 2016/12/12 16:55:30 by malbanes         ###   ########.fr       */
+/*   Updated: 2016/12/12 20:13:03 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,32 +39,38 @@ int		ft_deplacetetri_ok_x(char **map, int tetri)
 	return (1);
 }
 
-int		ft_deplacetetri_ok_y(char **map, int tetri)
+int		ft_deplacebloctetri(char **tetri, char **map, int t, int one)
 {
-	char t;
-	int x;
 	int y;
+	int x;
+	int size;
 
-	x = ft_strlen(map[0]) - 1;
-	y = x;
-	t = 65 + tetri;
-	while (y >= 0)
+	size = ft_strlen(map[0]) - 1;
+	y = 0;
+	x = 0;
+	while (y < size)
 	{
-		while (x >= 0)
+		while (x <= size)
 		{
-			if (map[y][x] == t)
+			if (map[y][x] == t + 65 && one == 1)
 			{
-				if (map[y + 1] == NULL)
-					return (0);
-				if (map[y + 1][x] != '.' && map [y + 1][x] != t)
-					return (0);
+				ft_removetetri(map, t);
+				y = y + 1;
+				x = 0;
+				one = 0;
 			}
-			x--;
+			if (ft_place_OK(tetri[t], map, y, x) == 4 && one == 0)
+			{
+				ft_cpy(tetri[t], map, y, x);
+				one = 3;
+				return (1);
+			}
+			x++;
 		}
-		x = ft_strlen(map[0]) - 1;
-		y--;
+		x = 0;
+		y++;
 	}
-	return (1);
+	return (0);
 }
 
 int	ft_deplacetetri_y(char **map, int tetri)

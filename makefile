@@ -6,7 +6,7 @@
 #    By: malbanes <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/20 18:02:04 by malbanes          #+#    #+#              #
-#    Updated: 2016/12/12 14:09:44 by malbanes         ###   ########.fr        #
+#    Updated: 2016/12/12 20:05:41 by malbanes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRC =	ft_removetetri.c ft_sqrtSup.c ft_setalpha.c struct_test.c\
 
 OBJ = $(SRC:.c=.o)
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g
 
 all : $(NAME)
 

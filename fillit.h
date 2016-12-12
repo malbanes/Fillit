@@ -6,7 +6,7 @@
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 12:38:41 by malbanes          #+#    #+#             */
-/*   Updated: 2016/12/12 15:48:13 by malbanes         ###   ########.fr       */
+/*   Updated: 2016/12/12 20:12:57 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct		int_list
 	int		y;
 }					int_list;
 
-
+int		ft_deplacebloctetri(char **tetri, char **map, int t, int one);
 int		ft_deplacetetri_ok_y(char **map, int tetri);
 int		ft_deplacetetri_ok_x(char **map, int tetri);
 int		ft_deplacetetri_y(char **map, int tetri);

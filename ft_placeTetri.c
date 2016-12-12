@@ -6,7 +6,7 @@
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 12:56:52 by malbanes          #+#    #+#             */
-/*   Updated: 2016/12/12 12:33:27 by malbanes         ###   ########.fr       */
+/*   Updated: 2016/12/12 19:28:24 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,46 +71,3 @@ void	ft_cpy(char *tetri, char **map, int my, int mx)
 		i++;
 	}
 }
-
-/*char	**ft_placeTetri(char **tetri, char **map, int t)
-{
-	int	my;
-	int	mx;
-	int	size;
-
-	my = 0;
-	mx = 0;
-	size = ft_strlen(map[0]);
-	if (ft_place_OK(tetri[t], map, my, mx) == 4)
-	{
-		ft_cpy(tetri[t], map, my, mx);
-		return (ft_placeTetri(tetri, map, t++));
-	}
-	else
-	{
-		if (ft_placeTetri(tetri, map, t++) == NULL)
-		{
-			if (ft_deplacetetri(map, t) == 1)
-				return (ft_placeTetri(tetri, map, t++));
-			else
-			{
-				ft_removetetri(map, t);
-				ft_deplacetetri(map, t - 1);
-				return (ft_placeTetri(tetri, map, t));
-			}
-		}
-		mx++;
-		if (map[my][mx] == '\0')
-		{
-			my++;
-			mx = 0;
-		}
-		if (my == size)
-		{
-			return (NULL);
-		}
-		if (t > size)
-			return (map);
-	}
-	return (map);
-} */
