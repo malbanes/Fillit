@@ -6,7 +6,7 @@
 /*   By: meassas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 10:19:34 by meassas           #+#    #+#             */
-/*   Updated: 2016/12/12 14:53:20 by malbanes         ###   ########.fr       */
+/*   Updated: 2016/12/21 19:02:15 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,22 @@ int		check_line(char *s)
 
 	i = 0;
 	j = 0;
-	while (s[i])
+	while (s[i] == '#' || s[i] == '.' || s[i] == '\n')
 	{
-		while (s[i] == '#' || s[i] == '.' || s[i] == '\n')
+		if (s[i] == '\n' && ((i % 5) == 0))
 		{
-			if (s[i] == '\n' && ((i % 5) == 0))
-				j++;
-			if (s[i] == '\n' && s[i - 1] == '\n')
-				j++;
+			i++;
+			j++;
 		}
-		i++;
+		if (s[i] == '\n' && s[i - 1] == '\n')
+		{
+			j++;
+			i++;
+		}
+		else if (s[i] == '\n' && i % 5 != 0)
+			return (0);
+		else
+			i++;
 	}
 	return (j);
 }
@@ -41,8 +47,8 @@ int		ft_tetri_linker(char *s)
 	int link;
 
 	link = 0;
-	i = -1;
-	while (++i < 22 && s[i] && link < 9)
+	i = 0;
+	while (i < 21 && s[i] && link < 9)
 	{
 		if (s[i] == '#')
 		{
@@ -55,6 +61,7 @@ int		ft_tetri_linker(char *s)
 			if (s[i] == '#' && s[i - 5] == '#')
 				++link;
 		}
+		i++;
 	}
 	return (link);
 }
@@ -78,15 +85,17 @@ int		ft_tetri_isvalid(char *s)
 	point = 0;
 	link = ft_tetri_linker(s);
 	i = 0;
+	if (check_line(s) != 5)
+		return (0);
 	if ((link == 6 || link == 8) && s[i])
 	{
 		while (i <= 21 && s[i])
 		{
 			if (s[i] == '\n' && s[i - 1] == '\n')
-				++i;
+				i++;
 			else if (((s[i] == '#' && (hash += 1)) || (s[i] == '.'
 							&& (point += 1)) || s[i] == '\n'))
-				++i;
+				i++;
 			else
 				return (0);
 		}
@@ -102,6 +111,6 @@ int		ft_tetri_isvalid(char *s)
 
 	str = ".#..\n##..\n.#..\n....\n\n";
 	printf("%d\n", ft_tetri_isvalid(str));
-}*/
-
+}
+*/
 

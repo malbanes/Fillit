@@ -6,7 +6,7 @@
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 19:03:59 by malbanes          #+#    #+#             */
-/*   Updated: 2016/12/12 14:21:08 by malbanes         ###   ########.fr       */
+/*   Updated: 2016/12/21 18:01:36 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char		**ft_splitetri(char *s, char c)
 		return (NULL);
 	while (y < cntTetri(s, c) && s[i]) //s[i] facultatif
 	{
-		split[y++] = ft_strsub(s, i , 20); // 21 pour ajouter le dernier \n
+		split[y++] = ft_strsub(s, i , 21); // 21 pour ajouter le dernier \n
 		i += 21;
 	}
 	split[y] = 0;
