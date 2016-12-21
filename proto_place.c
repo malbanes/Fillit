@@ -6,7 +6,7 @@
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/09 13:03:54 by malbanes          #+#    #+#             */
-/*   Updated: 2016/12/12 20:14:52 by malbanes         ###   ########.fr       */
+/*   Updated: 2016/12/14 14:51:53 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 int		proto_place(char **tetri, char **map, int t, int my, int mx, int m)
 {
-	int size;
 	int tmp;
 	int y;
 	int x;
@@ -25,11 +24,10 @@ int		proto_place(char **tetri, char **map, int t, int my, int mx, int m)
 	y = 0;
 	x = 0;
 	tmp = 0;
-	size = ft_strlen(map[0]);
-	if (tetri[t] == NULL)
-		return (1);
-	if (ft_place_OK(tetri[t], map, my, mx) == 4 && my <= size)
+	if (ft_place_OK(tetri[t], map, my, mx) == 4 && map[my] != NULL)
 	{
+		if (tetri[t + 1] == NULL)
+			return (1);
 		ft_cpy(tetri[t], map, my, mx);
 		//map debug
 		tmp = 0;
@@ -39,32 +37,29 @@ int		proto_place(char **tetri, char **map, int t, int my, int mx, int m)
 			tmp++;
 		}
 		ft_putchar('\n');
+		if (proto_place(tetri, map, t + 1, 0, 0, m) == 0)
+		{
+			if (ft_deplacebloc_ok(tetri[t], map, t, 1) == 1)
+			{
+				ft_deplacebloctetri(tetri[t], map, t, 1);
+				ft_putendl("map apres deplace"); //map test
+				tmp = 0;
+				while (map[tmp] != '\0')
+					ft_putendl(map[tmp++]);
+				ft_putchar('\n');              // fin map test
+			}
+			else if (ft_deplacebloc_ok(tetri[t], map, t, 1) == 0)
+			{
+				ft_removetetri(map, t);
+				ft_putendl("map apres remove");
+				tmp = 0;
+				while (map[tmp] != '\0')
+					ft_putendl(map[tmp++]);
+				ft_putchar('\n');
+				return (0);
+			}
+		}
 		return((proto_place(tetri, map, t + 1, 0, 0, m)));
-	}
-	else if (ft_place_OK(tetri[t], map, my, mx) != 4 && my == size && m < 400)
-	{
-		while (ft_deplacetetri_ok_x(map, t - 1) == 0 && ft_deplacebloctetri(tetri, map, t - 1, 1) == 0)
-		{
-			ft_removetetri(map, t-1);
-			t--;
-		}
-		if (ft_deplacetetri_ok_x(map, t - 1) == 0)
-		{
-			ft_deplacebloctetri(tetri, map, t - 1, 1);
-		}
-		else if (ft_deplacetetri_ok_x(map, t - 1) == 1)
-			ft_deplacetetri(map, t - 1);
-		m++;
-		//map debug
-		tmp = 0;
-		while (map[tmp] != NULL)
-		{
-			ft_putendl(map[tmp]);
-			tmp++;
-		}
-		ft_putnbr(m);
-		ft_putchar('\n');
-		return (proto_place(tetri, map, t, 0, 0, m));
 	}
 	else if (map[my] == NULL)
 		return (0);
@@ -78,5 +73,5 @@ int		proto_place(char **tetri, char **map, int t, int my, int mx, int m)
 		}
 		return (proto_place(tetri, map, t, my, mx, m));
 	}
-	return (0);
+	return (1);
 }

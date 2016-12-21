@@ -6,7 +6,7 @@
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 12:56:52 by malbanes          #+#    #+#             */
-/*   Updated: 2016/12/12 19:28:24 by malbanes         ###   ########.fr       */
+/*   Updated: 2016/12/21 16:47:56 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,72 @@ void	ft_cpy(char *tetri, char **map, int my, int mx)
 			x++;
 		i++;
 	}
+}
+
+int		placetetri(char **tetri, char **map, int t, int my, int mx, int m)
+{
+	int tmp;
+
+	tmp = 0;
+	if (tetri[t] == NULL)
+		return(1);
+	while (ft_place_OK(tetri[t], map, my, mx) != 4)
+	{
+		mx++;
+		if (map[my][mx] == '\0')
+		{
+			my++;
+			mx = 0;
+		}
+		if (map[my] == NULL)
+		{
+			if (ft_deplacebloc_ok(tetri[t - 1], map, t - 1, 1) == 1 && m < 50)
+			{
+				ft_deplacebloctetri(tetri[t - 1], map, t - 1, 1);
+				m++;
+				ft_putendl("map apres deplace");     //map temoin 2
+				tmp = 0;							  //
+				while (map[tmp] != NULL)             //
+				{                                   //
+					ft_putendl(map[tmp]);          //
+					tmp++;                        //
+				}
+				mx = 0;
+				my = 0;
+			}
+			else if (m < 600)
+			{
+				m++;
+				ft_putendl("map avnt remove");     //map temoin 2
+				tmp = 0;							  //
+				while (map[tmp] != NULL)             //
+				{                                   //
+					ft_putendl(map[tmp]);          //
+					tmp++;                        //
+				}
+				while (ft_deplacebloc_ok(tetri[t - 1], map, t - 1, 1) == 0)
+				{
+					ft_removetetri(map, t - 1);
+					t--;
+					if (t <= 0)
+						return (0);
+				}
+				ft_deplacebloctetri(tetri[t - 1], map, t - 1, 1);
+				mx = 0;
+				my = 0;
+			}
+			else
+				return (0);
+		}
+	}
+	ft_cpy(tetri[t], map, my, mx);
+	ft_putendl("Map apres cpy\n");     //Map temoin 1
+	tmp = 0;						  //
+	while (map[tmp] != NULL)         //
+	{                               //
+		ft_putendl(map[tmp]);	   //
+		tmp++;                    //
+	}							 //
+	ft_putchar('\n');           // Fin map temoin 1
+	return (placetetri(tetri, map, t + 1, 0, 0, m));
 }
