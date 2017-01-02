@@ -1,9 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   open.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/01/02 13:45:54 by malbanes          #+#    #+#             */
+/*   Updated: 2017/01/02 13:52:58 by malbanes         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 
 #include "fillit.h"
 #include "libft.h"
-
-int		proto_place(char **tetri, char **map, int t, int my, int mx, int m);
 
 #define BUF_SIZE 550// 21 Char * 26 Tetrimax
 
@@ -43,7 +53,7 @@ int		main(int ac, char **av)
 		ft_putstr("read FAILED");
 		return (1);
 	}
-	nbtetri = cntTetri(buf, '\n');
+	nbtetri = cntetri(buf, '\n');
 	tabtetri = ft_splitetri(buf, '\n');
 //	Check tetri valides
 	while (tabtetri[tmp] != 0)
@@ -57,7 +67,7 @@ int		main(int ac, char **av)
 	}
 	ft_rangetetri(tabtetri);
 	ft_setalpha(tabtetri);
-	map = ft_setmap(ft_sqrtSup(nbtetri * 4));
+	map = ft_setmap(ft_sqrtsup(nbtetri * 4));
 	if (nbtetri == 1)				//Condition, si 1 seul tetri
 	{
 		while (ft_place_OK(tabtetri[0], map, 0, 0) != 4)

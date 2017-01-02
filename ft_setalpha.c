@@ -6,7 +6,7 @@
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/27 14:59:50 by malbanes          #+#    #+#             */
-/*   Updated: 2016/12/08 13:36:27 by malbanes         ###   ########.fr       */
+/*   Updated: 2017/01/02 13:38:58 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,13 @@ void	ft_setalpha(char **s)
 	y = 0;
 	i = 0;
 	lettre = 30;
-
-	while(s[y] != 0)
+	while (s[y] != 0)
 	{
-		while(s[y][i] != '\0')
+		while (s[y][i] != '\0')
 		{
 			if (s[y][i] == '#')
 				s[y][i] = '#' + lettre;
-		i++;
+			i++;
 		}
 		y++;
 		lettre++;

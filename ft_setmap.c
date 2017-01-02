@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   ft_setmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/30 12:15:14 by malbanes          #+#    #+#             */
-/*   Updated: 2016/12/08 14:11:30 by malbanes         ###   ########.fr       */
+/*   Created: 2017/01/02 13:40:14 by malbanes          #+#    #+#             */
+/*   Updated: 2017/01/02 13:53:16 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fillit.h"
 
-void	*ft_memallocMap(size_t size)
+void	*ft_memallocmap(size_t size)
 {
 	char	*str;
 	size_t	i;
@@ -33,28 +33,13 @@ void	*ft_memallocMap(size_t size)
 char	**ft_setmap(size_t size)
 {
 	char	**map;
-	size_t		i;
+	size_t	i;
 
 	i = 0;
 	if (!(map = (char**)malloc(sizeof(char*) * size + 1)))
-			return (NULL);
+		return (NULL);
 	while (i < size)
-		map[i++] = ft_memallocMap(size);
+		map[i++] = ft_memallocmap(size);
 	map[i] = NULL;
 	return (map);
 }
-
-/*int		main(int ac, char **av)
-{
-	int	i;
-	char	**map;
-
-	i = 0;
-	map = ft_setmap(atoi(av[1]));
-	while (map[i] != 0)
-	{
-		printf("%s\n", (map[i]));
-		i++;
-	}
-	return (0);
-}*/
