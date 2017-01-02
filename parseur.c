@@ -6,40 +6,47 @@
 /*   By: meassas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 10:19:34 by meassas           #+#    #+#             */
-/*   Updated: 2016/12/21 19:02:15 by malbanes         ###   ########.fr       */
+/*   Updated: 2017/01/02 13:10:22 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
-#include "Fillit.h"
+#include "fillit.h"
 
 int		check_line(char *s)
 {
-	int i;
+i	int i;
 	int j;
+	int k;
 
+	k = 4;
 	i = 0;
 	j = 0;
-	while (s[i] == '#' || s[i] == '.' || s[i] == '\n')
+	if ((s[i] != '#' && s[i] != '.' && s[i] != '\n' && s[i] != '\0') && s[i])
+		return (0);
+	while ((s[i] == '#' || s[i] == '.' || s[i] == '\n' || s[i] == '\0') && s[i])
 	{
-		if (s[i] == '\n' && ((i % 5) == 0))
+		if (s[i] == '\n' && ((i == k)))
 		{
-			i++;
+			k += 5;
 			j++;
 		}
-		if (s[i] == '\n' && s[i - 1] == '\n')
-		{
+		else if (s[i] == '\n' && s[i - 1] == '\n')
 			j++;
-			i++;
-		}
-		else if (s[i] == '\n' && i % 5 != 0)
-			return (0);
-		else
-			i++;
+//		else if (s[i] == '\n' && ((i != k)))
+//			return (0);
+		i++;
 	}
 	return (j);
 }
+
+/*int		main()
+{
+	char *str;
+
+	str = "....\n####\n....\n....\n";
+	ft_putnbr(check_line(str));
+}*/
 
 int		ft_tetri_linker(char *s)
 {
@@ -48,31 +55,27 @@ int		ft_tetri_linker(char *s)
 
 	link = 0;
 	i = 0;
-	while (i < 21 && s[i] && link < 9)
+	if (check_line(s) == 5 || check_line(s) == 4)
 	{
-		if (s[i] == '#')
+		while (i <= 21 && s[i] && link < 9)
 		{
-			if (s[i] == '#' && s[i + 1] == '#')
-				++link;
-			if (s[i] == '#' && s[i - 1] == '#')
-				++link;
-			if (s[i] == '#' && s[i + 5] == '#')
-				++link;
-			if (s[i] == '#' && s[i - 5] == '#')
-				++link;
+			if (s[i] == '#')
+			{
+				if (s[i] == '#' && s[i + 1] == '#')
+					++link;
+				if (s[i] == '#' && s[i - 1] == '#')
+					++link;
+				if (s[i] == '#' && s[i + 5] == '#')
+					++link;
+				if (s[i] == '#' && s[i - 5] == '#')
+					++link;
+			}
+			i++;
 		}
-		i++;
+		return (link);
 	}
-	return (link);
+	return (0);
 }
-
-/*int		main(void)
-{
-	char *str;
-
-	str = "##..\n##..\n....\n....\n\n";
-	printf("%d\n", ft_tetri_linker(str));
-}*/
 
 int		ft_tetri_isvalid(char *s)
 {
@@ -85,8 +88,6 @@ int		ft_tetri_isvalid(char *s)
 	point = 0;
 	link = ft_tetri_linker(s);
 	i = 0;
-	if (check_line(s) != 5)
-		return (0);
 	if ((link == 6 || link == 8) && s[i])
 	{
 		while (i <= 21 && s[i])
@@ -100,17 +101,15 @@ int		ft_tetri_isvalid(char *s)
 				return (0);
 		}
 	}
-	if (hash == 4 && point == 12 && i == 21)
+	if (hash == 4 && point == 12 && ((i == 20) || (i == 21)))
 		return (1);
 	return (0);
 }
 
-/*int		main(void)
+/*int		main()
 {
 	char *str;
 
-	str = ".#..\n##..\n.#..\n....\n\n";
-	printf("%d\n", ft_tetri_isvalid(str));
-}
-*/
-
+	str = "....\n####\n....\n....\n\n";
+	ft_putnbr(ft_tetri_isvalid(str));
+}*/

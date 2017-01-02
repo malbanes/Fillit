@@ -33,9 +33,9 @@ int		main(int ac, char **av)
 	}
 	ret = read(fd, buf, BUF_SIZE); // soit boucle de read, soit taille max 26 elements
 	buf[ret] = '\0';
-	if (ret > 546) //nb de char max pour 26 tetriminos
+	if (ret > 546 || ret < 19) //nb de char max pour 26 tetriminos
 	{
-		ft_putstr("<ERROR> Too many characters\nCheck your entrance file");
+		ft_putstr("<ERROR>");
 		return (0);
 	}
 	if (close(fd) == -1)
@@ -46,15 +46,15 @@ int		main(int ac, char **av)
 	nbtetri = cntTetri(buf, '\n');
 	tabtetri = ft_splitetri(buf, '\n');
 //	Check tetri valides
-//	while (tabtetri[tmp] != 0)
-//	{
-//		if (ft_tetri_isvalid(tabtetri[tmp]) == 0)
-//		{
-//			ft_putendl("error");
-//			return (0);
-//		}
-//		tmp++;
-//	}
+	while (tabtetri[tmp] != 0)
+	{
+		if (ft_tetri_isvalid(tabtetri[tmp]) == 0)
+		{
+			ft_putendl("tetri invalide");
+			return (0);
+		}
+		tmp++;
+	}
 	ft_rangetetri(tabtetri);
 	ft_setalpha(tabtetri);
 	map = ft_setmap(ft_sqrtSup(nbtetri * 4));

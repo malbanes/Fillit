@@ -6,11 +6,11 @@
 #    By: malbanes <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/20 18:02:04 by malbanes          #+#    #+#              #
-#    Updated: 2016/12/12 20:05:41 by malbanes         ###   ########.fr        #
+#    Updated: 2017/01/02 13:08:31 by malbanes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Fillit
+NAME = fillit
 
 SRC =	ft_removetetri.c ft_sqrtSup.c ft_setalpha.c struct_test.c\
 		ft_placetetri.c ft_setmap.c open.c ft_rangetetri.c\
