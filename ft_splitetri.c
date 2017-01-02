@@ -6,14 +6,14 @@
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 19:03:59 by malbanes          #+#    #+#             */
-/*   Updated: 2017/01/02 13:53:58 by malbanes         ###   ########.fr       */
+/*   Updated: 2016/12/28 23:20:34 by meassas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fillit.h"
 
-int		cntetri(char *s, char c)
+int		cntTetri(char *s, char c)
 {
 	int i;
 	int j;
@@ -24,12 +24,22 @@ int		cntetri(char *s, char c)
 	{
 		if (s[i] == c && (s[i + 1] == c))
 			j++;
+		else if (s[i] == c && s[i + 1] == '\0')
+			j++;
 		i++;
 	}
 	return (j);
 }
 
-char	**ft_splitetri(char *s, char c)
+/*int main()
+{
+	char *str;
+
+	str = "....\n####\n....\n....\n\n....\n####\n....\n....\n";
+	ft_putnbr(cntTetri(str, '\n'));
+}*/
+
+char		**ft_splitetri(char *s, char c)
 {
 	int		i;
 	int		y;
@@ -37,12 +47,12 @@ char	**ft_splitetri(char *s, char c)
 
 	i = 0;
 	y = 0;
-	if (!(split = (char**)malloc(sizeof(char*) * (cntetri(s, c)) + 1))
+	if (!(split = (char**)malloc(sizeof(char*) * (cntTetri(s, c)) + 1))
 		|| (!s))
 		return (NULL);
-	while (y < cntetri(s, c) && s[i])
+	while (y < cntTetri(s, c) && s[i]) //s[i] facultatif
 	{
-		split[y++] = ft_strsub(s, i, 21);
+		split[y++] = ft_strsub(s, i , 21); // 21 pour ajouter le dernier \n
 		i += 21;
 	}
 	split[y] = 0;

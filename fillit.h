@@ -6,7 +6,7 @@
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 12:38:41 by malbanes          #+#    #+#             */
-/*   Updated: 2017/01/02 13:52:26 by malbanes         ###   ########.fr       */
+/*   Updated: 2016/12/14 14:51:47 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,15 @@ int		ft_place_OK(char *tetri, char **map, int my, int mx);
 void	ft_cpy(char *tetri, char **map, int my, int mx);
 char	**ft_placeTetri(char **tetri, char **map, int t);
 void	ft_setalpha(char **s);
-void	*ft_memallocmap(size_t size);
+void	*ft_memallocMap(size_t size);
 char	**ft_setmap(size_t size);
-int		cntetri(char *s, char c);
+int		cntTetri(char *s, char c);
 char	**ft_splitetri(char *s, char c);
 int		ft_xblanc(char *s);
 int		ft_yblanc(char *s);
 void	ft_swaptetri(char *tetri, int v);
 void	ft_rangetetri(char **tetri);
-int		ft_sqrtsup(int nb);
+int		ft_sqrtSup(int nb);
 int		ft_deplacetetri(char **map, int tetri);
 void	ft_removetetri(char **map, int tetri);
 int		check_line(char *s);

@@ -1,19 +1,9 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   open.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/02 13:45:54 by malbanes          #+#    #+#             */
-/*   Updated: 2017/01/02 13:52:58 by malbanes         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 
 
 #include "fillit.h"
 #include "libft.h"
+
+int		proto_place(char **tetri, char **map, int t, int my, int mx, int m);
 
 #define BUF_SIZE 550// 21 Char * 26 Tetrimax
 
@@ -29,23 +19,23 @@ int		main(int ac, char **av)
 	int		nbtetri;
 
 	tmp = 0;
-	if (ac > 2)
+	if (ac != 2)
 	{
-		ft_putstr("<ERROR> Too many arguments");
+		ft_putstr("usage : source_file target_file");
 		return (0);
 	}
 	y = 0;
 	fd = open(av[1], O_RDONLY);
-	if (fd == - 1)
+	if (fd == -1)
 	{
-		ft_putstr("Open FAILED");
+		ft_putendl("error");
 		return (1);
 	}
-	ret = read(fd, buf, BUF_SIZE); // soit boucle de read, soit taille max 26 elements
+	ret = read(fd, buf, BUF_SIZE);
 	buf[ret] = '\0';
-	if (ret > 546 || ret < 19) //nb de char max pour 26 tetriminos
+	if (ret > 546 || ret < 19 || (ret + 1) % 21 != 0)
 	{
-		ft_putstr("<ERROR>");
+		ft_putendl("error");
 		return (0);
 	}
 	if (close(fd) == -1)
@@ -53,40 +43,42 @@ int		main(int ac, char **av)
 		ft_putstr("read FAILED");
 		return (1);
 	}
-	nbtetri = cntetri(buf, '\n');
+	nbtetri = cntTetri(buf, '\n');
 	tabtetri = ft_splitetri(buf, '\n');
-//	Check tetri valides
 	while (tabtetri[tmp] != 0)
 	{
 		if (ft_tetri_isvalid(tabtetri[tmp]) == 0)
 		{
-			ft_putendl("tetri invalide");
-			return (0);
+			ft_putendl("error");
+			return (1);
 		}
 		tmp++;
 	}
 	ft_rangetetri(tabtetri);
 	ft_setalpha(tabtetri);
-	map = ft_setmap(ft_sqrtsup(nbtetri * 4));
-	if (nbtetri == 1)				//Condition, si 1 seul tetri
-	{
+	map = ft_setmap(ft_sqrtSup(nbtetri * 4));
+	//ft_putnbr(nbtetri);
+	//ft_putchar('\n');
+	//if (nbtetri == 1)
+	//{
+		fd = ft_sqrtSup(nbtetri * 4);
 		while (ft_place_OK(tabtetri[0], map, 0, 0) != 4)
 		{
 			free (map);
-			nbtetri++;
-			map = ft_setmap(nbtetri);
+			fd++;
+			map = ft_setmap(fd);
 		}
-		ft_cpy(tabtetri[0], map, 0, 0);
-	}								// fin condition si 1 seul tetri
-	else
-	{
+	//	ft_cpy(tabtetri[0], map, 0, 0);
+	//}
+	//else
+	//{
 		while (placetetri(tabtetri, map, 0, 0, 0, 0) != 1)
 		{
 			free (map);
-			nbtetri++;
-			map = ft_setmap(nbtetri);
+			fd++;
+			map = ft_setmap(fd);
 		}
-	}
+	//}
 	y = 0;
 	while (map[y] != 0)
 	{
