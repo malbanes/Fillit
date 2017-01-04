@@ -6,14 +6,14 @@
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 12:15:14 by malbanes          #+#    #+#             */
-/*   Updated: 2016/12/08 14:11:30 by malbanes         ###   ########.fr       */
+/*   Updated: 2017/01/04 17:09:42 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fillit.h"
 
-void	*ft_memallocMap(size_t size)
+void	*ft_resetmap(size_t size)
 {
 	char	*str;
 	size_t	i;
@@ -39,11 +39,30 @@ char	**ft_setmap(size_t size)
 	if (!(map = (char**)malloc(sizeof(char*) * size + 1)))
 			return (NULL);
 	while (i < size)
-		map[i++] = ft_memallocMap(size);
+		map[i++] = ft_resetmap(size);
 	map[i] = NULL;
 	return (map);
 }
 
+char	**ft_map_plus_un(char **map, int tmp)
+{
+	free (map);
+	map = ft_setmap(tmp);
+	return (map);
+}
+
+void	ft_affichage(char **map)
+{
+	int	i;
+	
+	i = 0;
+	while (map[i] != NULL)
+	{
+		ft_putendl(map[i]);
+		i++;
+	}
+//	free (map);
+}
 /*int		main(int ac, char **av)
 {
 	int	i;

@@ -6,7 +6,7 @@
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 14:19:05 by malbanes          #+#    #+#             */
-/*   Updated: 2017/01/02 16:57:29 by malbanes         ###   ########.fr       */
+/*   Updated: 2017/01/04 19:38:22 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ int		ft_deplacebloc_ok(char *tetri, char **map, int t, int one)
 			{
 				one = 3;
 				return (1);
-				one = 3;
 			}
 			x++;
 		}
@@ -87,7 +86,7 @@ int		ft_deplacebloctetri(char *tetri, char **map, int t, int one)
 	i = 0;
 	y = 0;
 	x = 0;
-	while (tetri[i] == '.')
+	while (tetri[i] && tetri[i] == '.' && map[y][x])
 		i++;
 	while (map[y] != NULL)
 	{
@@ -101,7 +100,6 @@ int		ft_deplacebloctetri(char *tetri, char **map, int t, int one)
 			else if (ft_place_OK(tetri, map, y, x - i) == 4 && one == 0)
 			{
 				ft_cpy(tetri, map, y, x - i);
-				one = 3;
 				return (1);
 			}
 			x++;
@@ -110,60 +108,6 @@ int		ft_deplacebloctetri(char *tetri, char **map, int t, int one)
 		y++;
 	}
 	return (0);
-}
-
-int	ft_deplacetetri_y(char **map, int tetri)
-{
-	char t;
-	int y;
-	int x;
-
-	x = ft_strlen(map[0]) - 1;
-	y = x;
-	t = 65 + tetri;
-	while (y >= 0)
-	{
-		while (x >= 0)
-		{
-			if (map[y][x] == t && (map[y + 1][x] != '.' && map[y + 1][x] != t))
-				return (0);
-			x--;
-		}
-		x = ft_strlen(map[0]) - 1;
-		y--;
-	}
-	return (1);
-}
-
-int		ft_deplacetetri(char **map, int tetri)
-{
-	char	t;
-	int x;
-	int y;
-
-	x = ft_strlen(map[0]) - 1;
-	y = x;
-	t = 65 + tetri;
-	while (y >= 0)
-	{
-		while (x >= 0)
-		{
-			if (map[y][x] == t)
-			{
-				if (map[y][x + 1] == '.')
-				{
-					map[y][x] = '.';
-					map[y][x + 1] = t;
-				}
-				else if (map[y][x] == t && map[y][x + 1] != '.')
-					return (0);
-			}
-			x--;
-		}
-		x = ft_strlen(map[0]) - 1;
-		y--;
-	}
-	return (1);
 }
 
 void	ft_removetetri(char **map, int tetri)
@@ -175,8 +119,6 @@ void	ft_removetetri(char **map, int tetri)
 	x = 0;
 	y = 0;
 	t = 65 + tetri;
-//	if (ft_deplacetetri(map, t) == 0)
-//	{
 	while (map[y] != NULL)
 	{
 		while (map[y][x] != '\0')
@@ -188,10 +130,6 @@ void	ft_removetetri(char **map, int tetri)
 		x = 0;
 		y++;
 	}
-
-//	}
-//	else
-//		return (1);
 }
 
 /*int		main()

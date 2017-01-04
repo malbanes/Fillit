@@ -6,7 +6,7 @@
 #    By: malbanes <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/20 18:02:04 by malbanes          #+#    #+#              #
-#    Updated: 2017/01/04 16:52:24 by malbanes         ###   ########.fr        #
+#    Updated: 2017/01/02 17:46:46 by malbanes         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,11 @@ NAME = fillit
 
 SRC =	ft_removetetri.c ft_sqrtSup.c ft_setalpha.c struct_test.c\
 		ft_placetetri.c ft_setmap.c open.c ft_rangetetri.c\
-		ft_splitetri.c proto_place.c parseur.c fctlib.c
+		ft_splitetri.c proto_place.c parseur.c
 
 OBJ = $(SRC:.c=.o)
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g
 
 all : $(NAME)
 
