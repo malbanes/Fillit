@@ -6,106 +6,94 @@
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 14:19:05 by malbanes          #+#    #+#             */
-/*   Updated: 2017/01/04 19:38:22 by malbanes         ###   ########.fr       */
+/*   Updated: 2017/01/06 15:24:06 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include "libft.h"
 
-int		ft_placebloc_OK(char *tetri, char **map, int my, int mx, int let)
+int		ft_placebloc_ok(char *tetri, char **map, int_list *pos2, int_list *pos3)
 {
-	int_list	*t;
 	int res;
 
-	t = NULL;
 	res = 0;
-	t = set_int(t);
-	while (tetri[t->i] != '\0')
+	pos2->x = pos2->x - pos2->one;
+	while (tetri[pos3->i] != '\0')
 	{
-		if (tetri[t->i] == let)
-			if ((my + t->y) >= (int)ft_strlen(map[0]))
+		if (tetri[pos3->i] == pos2->i + 65)
+			if ((pos2->y + pos3->y) >= (int)ft_strlen(map[0]))
 				return (0);
-		if (tetri[t->i] == let)
+		if (tetri[pos3->i] == pos2->i + 65)
 		{
-			if (map[my + t->y][mx + t->x] == '.' || map[my + t->y][mx + t->x] == let)
+			if (map[pos2->y + pos3->y][pos2->x + pos3->x] == '.' ||
+					map[pos2->y + pos3->y][pos2->x + pos3->x] == pos2->i + 65)
 				res++;
-			t->x++;
+			pos3->x++;
 		}
-		else if (tetri[t->i] == '\n' && tetri[t->i + 1] != '\n')
-		{
-			t->y++;
-			t->x = 0;
-		}
+		else if (tetri[pos3->i] == '\n' && tetri[pos3->i + 1] != '\n')
+			ft_set_int(pos3, 1);
 		else
-			t->x++;
-		t->i++;
+			pos3->x++;
+		pos3->i++;
 	}
-	free (t);
+	free(pos3);
+	pos2->x = pos2->x + pos2->one;
 	return (res);
 }
 
-int		ft_deplacebloc_ok(char *tetri, char **map, int t, int one)
+int		ft_deplacebloc_ok(char *tetri, char **map, int_list *pos, int_list *pos2)
 {
-	int y;
 	int i;
-	int x;
+	int_list	*pos3;
 
 	i = 0;
-	y = 0;
-	x = 0;
-	if (t == -1)
-		return (- 1);
-	while (tetri[i] && map[y][x] && tetri[i] == '.')
+	pos3 = NULL;
+	pos3 = set_int(pos3);
+	if (pos2->i == -1)
+		return (-1);
+	while (tetri[i] && map[pos2->y][pos2->x] && tetri[i] == '.')
 		i++;
-	while (map[y] != NULL)
+	while (map[pos2->y] != NULL)
 	{
-		while (map[y][x] != '\0')
+		while (map[pos2->y][pos2->x] != '\0')
 		{
-			if (map[y][x] == t + 65 && one == 1)
-				one = 0;
-			else if (ft_placebloc_OK(tetri, map, y, x - i, t + 65) == 4 && one == 0)
-			{
-				one = 3;
+			pos2->one = i;
+			if (map[pos2->y][pos2->x] == pos2->i + 65 && pos->one == 1)
+				pos->one = 0;
+			else if (ft_placebloc_ok(tetri, map, pos2, pos3) == 4 
+					&& pos->one == 0 && (pos->one += 1))
 				return (1);
-			}
-			x++;
+			pos2->x++;
 		}
-		x = 0;
-		y++;
+		ft_set_int(pos2, 1);
 	}
 	return (0);
 }
 
-int		ft_deplacebloctetri(char *tetri, char **map, int t, int one)
+int		ft_deplacetetri(char *tetri, char **map, int_list *pos, int_list *pos2)
 {
-	int y;
-	int x;
 	int i;
 
 	i = 0;
-	y = 0;
-	x = 0;
-	while (tetri[i] && tetri[i] == '.' && map[y][x])
+	while (tetri[i] && tetri[i] == '.' && map[pos2->y][pos2->x])
 		i++;
-	while (map[y] != NULL)
+	while (map[pos2->y] != NULL)
 	{
-		while (map[y][x] != '\0')
+		while (map[pos2->y][pos2->x] != '\0')
 		{
-			if (map[y][x] == t + 65 && one == 1)
+			if (map[pos2->y][pos2->x] == pos2->i + 65 && pos->one == 1 &&
+					(pos->one -= 0))
+				ft_removetetri(map, pos2->i);
+			else if (ft_place_ok(tetri, map, pos2->y, pos2->x - i) == 4 &&
+					pos->one == 0)
 			{
-				ft_removetetri(map, t);
-				one = 0;
-			}
-			else if (ft_place_OK(tetri, map, y, x - i) == 4 && one == 0)
-			{
-				ft_cpy(tetri, map, y, x - i);
+				ft_cpy(tetri, map, pos2->y, pos2->x - i);
+				pos->one = 1;
 				return (1);
 			}
-			x++;
 		}
-		x = 0;
-		y++;
+		ft_set_int(pos2, 1);
 	}
 	return (0);
 }

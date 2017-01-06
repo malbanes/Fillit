@@ -6,11 +6,10 @@
 /*   By: meassas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 10:19:34 by meassas           #+#    #+#             */
-/*   Updated: 2017/01/02 17:56:36 by malbanes         ###   ########.fr       */
+/*   Updated: 2017/01/06 16:58:29 by meassas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "fillit.h"
 
 int		check_line(char *s)
@@ -33,20 +32,10 @@ int		check_line(char *s)
 		}
 		else if (s[i] == '\n' && s[i - 1] == '\n')
 			j++;
-//		else if (s[i] == '\n' && ((i != k)))
-//			return (0);
 		i++;
 	}
 	return (j);
 }
-
-/*int		main()
-{
-	char *str;
-
-	str = "....\n####\n....\n....\n";
-	ft_putnbr(check_line(str));
-}*/
 
 int		ft_tetri_linker(char *s)
 {
@@ -105,11 +94,3 @@ int		ft_tetri_isvalid(char *s)
 		return (1);
 	return (0);
 }
-
-/*int		main()
-{
-	char *str;
-
-	str = "....\n####\n....\n....\n\n";
-	ft_putnbr(ft_tetri_isvalid(str));
-}*/
